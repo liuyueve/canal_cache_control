@@ -1,0 +1,28 @@
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/canal?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 12345
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+      connection-timeout: 10000
+      idle-timeout: 180000
+      max-lifetime: 1800000
+      minimum-idle: 4
+      maximum-pool-size: 8
+      initialization-fail-timeout: 1
+      pool-name: Hikari-pool
