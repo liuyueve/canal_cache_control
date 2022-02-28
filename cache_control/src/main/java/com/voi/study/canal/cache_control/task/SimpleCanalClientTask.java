@@ -38,6 +38,7 @@ public class SimpleCanalClientTask implements Runnable {
                 int size = message.getEntries().size();
                 if (batchId == -1 || size == 0) {
                     try {
+                        //如果没有获取到数据，等待5秒继续
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         break;
@@ -72,6 +73,7 @@ public class SimpleCanalClientTask implements Runnable {
             String schema = entry.getHeader().getSchemaName();
             String table = entry.getHeader().getTableName();
 
+            //如果获取到了指定表的更新操作，则删除缓存，让下一次查询直接查数据库
             if (Constant.CONTROL_SCHEMA.equals(schema) && Constant.CONTROL_TABLE.equals(table)) {
                 if (eventType == EventType.DELETE || eventType == EventType.INSERT) {
                     log.info("receive change in book ,delete cache!");
